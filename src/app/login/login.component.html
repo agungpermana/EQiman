@@ -1,0 +1,82 @@
+<!-- <div class="col-md-6 offset-md-3 mt-5">
+    <div class="alert alert-info">
+        Username: test<br />
+        Password: test
+    </div>
+    <div class="card">
+        <h4 class="card-header">Please Sign In</h4>
+        <div class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Username is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                    </div>
+                </div>
+                <button [disabled]="loading" class="btn btn-success">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Sign
+                </button>
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+            </form>
+        </div>
+    </div>
+</div> -->
+
+
+<div style="background-color: #727170; min-height: 100vh; height: auto;
+  background-position: center; background-repeat: no-repeat; background-size: cover" fxLayout="column"
+    fxLayoutAlign="center center">
+    <div fxLayout="column" fxLayoutAlign="center center"
+        style="height: 100%; width: 100%; justify-content: center; flex:1">
+        <mat-card class="login-container">
+            <mat-card-content class="login-mat-card-container">
+                <div [fxLayout]="isSmallScren ? 'column' : 'row'" fxLayoutWrap="wrap">
+                    <div class="login-container-right" fxLayout="column" fxFlex.gt-sm="100" fxFlex.gt-xs="100"
+                        fxLayoutAlign="center center">
+                        <div fxLayout="column" style="width: 100%; margin-bottom:10px">
+                            <label [hidden]="isSmallScren" style="font-size: 20px; font-weight: 400">
+                                <h3>Please Sign In</h3>
+                            </label>
+                        </div>
+                        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" formControlName="username" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                    <div *ngIf="f.username.errors.required">Username is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" formControlName="password" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                </div>
+                            </div>
+                            <button [disabled]="loading" class="btn btn-success">
+                                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                Sign
+                            </button>
+                            <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+                        </form>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center"
+        style="width: 100%; justify-content: flex-start; margin-top:10px; margin-bottom: 10px; margin-left: 25px">
+        <!-- <label style="font-size: 12px; font-weight: 400"><b>Powered</b></label> -->
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<mat-card>
+    <mat-card-content>
+        <!-- <div [hidden]="showInput"> -->
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-card-title>Asset List</mat-card-title>
+            <div fxLayout="row">
+                <button style="margin-left:5px; margin-right:5px" mat-raised-button>
+                    <mat-icon>add</mat-icon> Register
+                </button>
+                <button style="margin-left:5px; margin-right:5px" mat-raised-button>
+                    <mat-icon>delete</mat-icon> Delete
+                </button>
+                <button mat-raised-button>
+                    <mat-icon>view_comfy</mat-icon> Excel
+                </button>
+            </div>
+        </div>
+        <div style="margin-top:10px">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <!-- Checkbox Column -->
+                <ng-container matColumnDef="select">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                        </mat-checkbox>
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                            [aria-label]="checkboxLabel(row)">
+                        </mat-checkbox>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="no">
+                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.no}} </td>
+                </ng-container>
+                <ng-container matColumnDef="ecode">
+                    <th mat-header-cell *matHeaderCellDef> E-Code </th>
+                    <td mat-cell *matCellDef="let element"> {{element.ecode}} </td>
+                </ng-container>
+                <ng-container matColumnDef="kategori">
+                    <th mat-header-cell *matHeaderCellDef> Kategori </th>
+                    <td mat-cell *matCellDef="let element"> {{element.kategori}} </td>
+                </ng-container>
+                <ng-container matColumnDef="asset">
+                    <th mat-header-cell *matHeaderCellDef> Asset </th>
+                    <td mat-cell *matCellDef="let element"> {{element.asset}} </td>
+                </ng-container>
+                <ng-container matColumnDef="manager">
+                    <th mat-header-cell *matHeaderCellDef> Manager </th>
+                    <td mat-cell *matCellDef="let element"> {{element.manager}} </td>
+                </ng-container>
+                <ng-container matColumnDef="lokasi">
+                    <th mat-header-cell *matHeaderCellDef> Lokasi </th>
+                    <td mat-cell *matCellDef="let element"> {{element.lokasi}} </td>
+                </ng-container>
+                <ng-container matColumnDef="pemeriksaan">
+                    <th mat-header-cell *matHeaderCellDef> Pemeriksaan </th>
+                    <td mat-cell *matCellDef="let element"> {{element.pemeriksaan}} </td>
+                </ng-container>
+                <ng-container matColumnDef="hasilpemeriksaan">
+                    <th mat-header-cell *matHeaderCellDef> Hasil Pemeriksaan </th>
+                    <td mat-cell *matCellDef="let element"> 
+                        <span *ngIf="element.hasilpemeriksaan === 'good'" style="color:green">{{element.hasilpemeriksaan}}</span>
+                        <span *ngIf="element.hasilpemeriksaan !== 'good'" style="color:red">{{element.hasilpemeriksaan}}</span>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+                </tr>
+            </table>
+        </div>
+        <!-- </div> -->
+        <!-- <div *ngIf="showInput">
+            <app-merk-meter [showInput]="showInput" (onHideInput)="onHideInput()"></app-merk-meter>
+        </div> -->
+    </mat-card-content>
+</mat-card>
+<!-- <ngx-loading [show]="loading"></ngx-loading> -->
